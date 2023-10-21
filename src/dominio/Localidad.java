@@ -25,7 +25,6 @@ public class Localidad {
         this.habitantes_localidad = habitantes_localidad;
     }
 
-    @Override
     public String toString() {
         return "nombre: " + nombre + "\t población: " + habitantes_localidad;
     }

@@ -1,11 +1,10 @@
-
 package aplicacion;
 
 import dominio.Localidad;
 import dominio.Municipio;
 import dominio.Provincia;
 
-public class Main {
+public class Principal {
     public static void main(String[] args) {
         Localidad localidad1 = new Localidad("Mostoles", 10000);
         Localidad localidad2 = new Localidad("Carabanchel", 7000);
@@ -26,6 +25,9 @@ public class Main {
 
         Provincia provincia2 = new Provincia("C Valenciana");
         provincia2.addMunicipio(municipio2);
+
+	System.out.println(provincia1);
+        System.out.println(provincia2);
     }
 }
 
