@@ -1,54 +1,37 @@
-
 package dominio;
-
 import java.util.ArrayList;
-import java.util.List;
-
-public class Municipio {
+import java.io.Serializable;
+public class Municipio implements Serializable{
     private String nombre;
-    private List<Localidad> localidades;
-
-    public Municipio(String nombre) {
-        this.nombre = nombre;
-        this.localidades = new ArrayList<>();
+    private ArrayList<Localidad> localidades;
+ 
+    public Municipio(String nombre_) {
+        nombre=nombre_;
+        localidades=new ArrayList<Localidad>();
     }
-
+    public Municipio add(Localidad localidad){
+        localidades.add(localidad);
+        return this;
+    }
+    public int getPoblacion(){
+        int poblacion=0;
+        for(Localidad localidad:localidades){
+            poblacion+=localidad.getPoblacion();
+        }
+        return poblacion;
+    }
+    public int getLocalidades(){
+        return localidades.size();
+    }
+    public Localidad getLocalidad(int i){
+        return localidades.get(i);
+    }
+    public String toString(){
+        return "Municipio: "+nombre+" Población: "+getPoblacion() +" habitantes\n"+localidades.toString()+"\n";
+    }
+ 
     public String getNombre() {
         return nombre;
     }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public List<Localidad> getLocalidades() {
-        return localidades;
-    }
-
-    public void addLocalidad(Localidad localidad) {
-        localidades.add(localidad);
-    }
-
-    public int getPoblacion() {
-        int total = 0;
-        for (Localidad localidad : localidades) {
-            total += localidad.getHabitantes_localidad();
-        }
-        return total;
-    }
-
-  
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Municipio: ").append(nombre).append("\n");
-        sb.append("Localidades:\n");
-
-        for (Localidad localidad : localidades) {
-            sb.append(localidad.toString()).append("\n");
-        }
-
-        return sb.toString();
-    }
+ 
 }
-
-

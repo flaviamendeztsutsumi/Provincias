@@ -1,52 +1,38 @@
 package dominio;
-
 import java.util.ArrayList;
-import java.util.List;
-
-public class Provincia {
+import java.io.Serializable;
+public class Provincia implements Serializable{
     private String nombre;
-    private List<Municipio> municipios;
-
-    public Provincia(String nombre) {
-        this.nombre = nombre;
-        this.municipios = new ArrayList<>();
+    private ArrayList<Municipio> municipios;
+    public Provincia(String nombre_) {
+        nombre=nombre_;
+        municipios=new ArrayList<Municipio>();
     }
-
+    public Provincia add(Municipio municipio){
+        municipios.add(municipio);
+        return this;
+    }
     public String getNombre() {
         return nombre;
     }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public int getPoblacion(){
+        int poblacion=0;
+        for(Municipio municipio:municipios){
+        poblacion+=municipio.getPoblacion();
+        }
+        return poblacion;
     }
-
-    public List<Municipio> getMunicipios() {
+    public ArrayList<Municipio> getMunicipios(){
         return municipios;
     }
-
-    public void addMunicipio(Municipio municipio) {
-        municipios.add(municipio);
+    public Municipio getMunicipio(int i){
+        return municipios.get(i);
     }
-
-    public int getPoblacionTotal() {
-        int poblacionTotal = 0;
-        for (Municipio municipio : municipios) {
-            poblacionTotal += municipio.getPoblacion();
-        }
-        return poblacionTotal;
+    public String toString(){
+        return "Provincia: "+nombre+" Población: "+getPoblacion() +" habitantes\n"+municipios.toString()+"\n";
     }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Provincia: ").append(nombre).append("\n");
-        sb.append("Municipios:\n");
-
-        for (Municipio municipio : municipios) {
-            sb.append(municipio.toString()).append("\n");
-        }
-
-        return sb.toString();
+    public int size(){
+        return municipios.size();
     }
+ 
 }
-
